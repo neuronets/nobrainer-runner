@@ -1,0 +1,2 @@
+[console_scripts]
+nobrainer-runner = nobrainer_runner.cli:cli

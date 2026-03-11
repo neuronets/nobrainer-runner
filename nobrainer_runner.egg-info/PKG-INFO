@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: nobrainer-runner
+Version: 0.1.0
+Summary: Job dispatch backend for nobrainer: Slurm, AWS Batch, GCP Batch.
+License: Apache License 2.0
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.0
+Requires-Dist: pyyaml>=6.0
+Provides-Extra: aws
+Requires-Dist: boto3; extra == "aws"
+Provides-Extra: gcp
+Requires-Dist: google-cloud-batch; extra == "gcp"
+Provides-Extra: all
+Requires-Dist: boto3; extra == "all"
+Requires-Dist: google-cloud-batch; extra == "all"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+
+# nobrainer-runner
+
+Job dispatch backend for [nobrainer](https://github.com/neuronets/nobrainer).
+Supports Slurm (HPC clusters), AWS Batch, and GCP Batch.
+
+## Installation
+
+```bash
+uv venv --python 3.11
+uv pip install -e .
+# With AWS support:
+uv pip install -e ".[aws]"
+# With GCP support:
+uv pip install -e ".[gcp]"
+```
+
+## Usage
+
+```bash
+nobrainer-runner submit --backend slurm --config job.yaml
+nobrainer-runner status --job-id <id>
+```
+
+## Backends
+
+- **Slurm**: HPC cluster job submission via `sbatch`
+- **AWS Batch**: Cloud GPU jobs on AWS
+- **GCP Batch**: Cloud GPU jobs on Google Cloud

@@ -1,0 +1,16 @@
+click>=8.0
+pyyaml>=6.0
+
+[all]
+boto3
+google-cloud-batch
+
+[aws]
+boto3
+
+[dev]
+pytest
+pytest-cov
+
+[gcp]
+google-cloud-batch

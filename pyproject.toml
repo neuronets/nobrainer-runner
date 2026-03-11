@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools >= 68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nobrainer-runner"
+version = "0.1.0"
+description = "Job dispatch backend for nobrainer: Slurm, AWS Batch, GCP Batch."
+readme = "README.md"
+license = { text = "Apache License 2.0" }
+requires-python = ">=3.9"
+dependencies = [
+    "click >= 8.0",
+    "pyyaml >= 6.0",
+]
+
+[project.optional-dependencies]
+aws = [
+    "boto3",
+]
+gcp = [
+    "google-cloud-batch",
+]
+all = [
+    "boto3",
+    "google-cloud-batch",
+]
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.scripts]
+nobrainer-runner = "nobrainer_runner.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nobrainer_runner*"]
