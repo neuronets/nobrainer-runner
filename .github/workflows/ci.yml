@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.13", "3.14"]
 
     steps:
       - uses: actions/checkout@v4
@@ -23,13 +23,13 @@ jobs:
         uses: astral-sh/setup-uv@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        run: uv python install ${{ matrix.python-version }}
+        run: uv venv --python ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
-          uv pip install --system \
+          uv pip install \
             ".[dev]"
 
       - name: Test with pytest
         run: |
-          pytest nobrainer_runner/tests/ -v --no-header
+          uv run pytest nobrainer_runner/tests/ -v --no-header
